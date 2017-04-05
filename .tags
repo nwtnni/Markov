@@ -1,0 +1,21 @@
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+addNext	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public boolean addNext(V vnxt) {$/;"	m	language:Java	class:PrefixNode
+addSeq	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    public boolean addSeq(List<V> prefix, V next) {$/;"	m	language:Java	class:Markov
+count	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private HashMap<V, Integer> count;$/;"	f	language:Java	class:PrefixNode	file:
+getCount	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public Map<V, Integer> getCount() {$/;"	m	language:Java	class:PrefixNode
+getNext	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public PrefixNode<V> getNext(V value) {$/;"	m	language:Java	class:PrefixNode
+getTotal	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public int getTotal() {$/;"	m	language:Java	class:PrefixNode
+getValue	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public V getValue() {$/;"	m	language:Java	class:PrefixNode
+Markov	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    public Markov(int order) {$/;"	m	language:Java	class:Markov
+Markov	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^public class Markov<V> {$/;"	c	language:Java
+next	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private HashMap<V, PrefixNode<V>> next;$/;"	f	language:Java	class:PrefixNode	file:
+order	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    int order;$/;"	f	language:Java	class:Markov
+parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^package parse;$/;"	p	language:Java
+parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^package parse;$/;"	p	language:Java
+PrefixNode	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public PrefixNode(V value) {$/;"	m	language:Java	class:PrefixNode
+PrefixNode	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^public class PrefixNode<V> {$/;"	c	language:Java
+prob	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private HashMap<V, Double> prob;$/;"	f	language:Java	class:PrefixNode	file:
+root	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    PrefixNode<V> root;$/;"	f	language:Java	class:Markov
+toString	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public String toString() {$/;"	m	language:Java	class:PrefixNode
+total	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private int total;$/;"	f	language:Java	class:PrefixNode	file:
+value	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private V value;$/;"	f	language:Java	class:PrefixNode	file:
