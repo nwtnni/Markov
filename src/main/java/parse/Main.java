@@ -7,14 +7,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        TextParser tp = new TextParser(Integer.parseInt(args[0]));
+        MarkovTextParser tp;
+
+        try {
+            tp = new MarkovTextParser(Integer.parseInt(args[0]));
+        } catch(NumberFormatException n){
+            usage();
+            return;
+        }
+
         Scanner s = new Scanner(System.in);
 
         try {
             tp.load(new File(args[1]));
             tp.parse();
         } catch(Exception e){
-            System.out.println("Invalid file. Exiting...");
             s.close();
             return;
         }
@@ -25,7 +32,7 @@ public class Main {
             String input = s.next();
 
             if (input.equals("q")) {
-                break; 
+                break;
             } else {
                 try {
                     String out = tp.generate(Integer.parseInt(input));
@@ -37,5 +44,11 @@ public class Main {
         }
 
         s.close();
+    }
+
+    private static void usage() {
+        System.out.println("Usage: java -jar Markov.jar <ORDER> <FILE>");
+        System.out.println("Where <ORDER> is the desired Markov Chain order");
+        System.out.println("And <FILE> is the file to parse");
     }
 }

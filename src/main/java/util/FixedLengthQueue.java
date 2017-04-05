@@ -39,4 +39,18 @@ public class FixedLengthQueue<E> {
     public List<E> toList() {
         return Collections.unmodifiableList(q);
     }
+
+    /*
+     * Pretty-printing
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (E elem : q) {
+            sb.append(elem.toString() + ", ") ;
+        }
+
+        return sb.toString();
+    }
 }

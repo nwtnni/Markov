@@ -11,21 +11,39 @@ import java.util.Scanner;
 
 import util.FixedLengthQueue;
 
-public class TextParser {
+public class MarkovTextParser {
 
     private int order;
     private Markov<String> mc;
     private Scanner s;
 
-    public TextParser(int order) {
+    /*
+     * Constructs a
+     */
+    public MarkovTextParser(int order) {
+        this.order = order;
         mc = new Markov<String>(order);
     }
 
+    /*
+     * Loads a text file for use by this parser.
+     */
     public void load(File f) throws IOException {
         s = new Scanner(new BufferedInputStream(new FileInputStream(f)));
      }
 
+    /*
+     * Parses the loaded file into a Markov Chain tree.
+     * Returns null if no file was loaded.
+     *
+     * @exception EOFException if file does not meet minumum length
+     * for the given Markov Chain order.
+     */
     public void parse() throws EOFException {
+
+        if (s == null) {
+            return;
+        }
 
         List<String> initial = new ArrayList<String>();
 
@@ -46,6 +64,12 @@ public class TextParser {
         }
     }
 
+    /*
+     * Generates a random string using Markov Chain analysis on the
+     * given file.
+     *
+     * @param length The length of the generated text
+     */
     public String generate(int length) {
 
         StringBuilder sb = new StringBuilder();
@@ -55,7 +79,11 @@ public class TextParser {
         for (int i = 0; i < length; i++) {
             String next = mc.getNext(q.toList());
             q.shift(next);
-            sb.append(next);
+            if (i != length - 1) {
+                sb.append(next + " ");
+            } else {
+                sb.append(next + ".");
+            }
         }
 
         return sb.toString();

@@ -8,8 +8,11 @@ public class Markov<V> {
     int order;
     PrefixNode<V> root;
 
+    /*
+     * Constructs a Markov Chain with the given order.
+     */
     public Markov(int order) {
-        this.order = order; 
+        this.order = order;
         root = new PrefixNode<V>(null);
     }
 
@@ -21,7 +24,7 @@ public class Markov<V> {
 
         // Must match this Markov chain's order
         if (prefix.size() != order) {
-            return false; 
+            return false;
         }
 
         PrefixNode<V> ptr = root;
@@ -43,14 +46,14 @@ public class Markov<V> {
      */
     public V getNext(List<V> prefix) {
         if (prefix.size() != order) {
-            return null; 
+            return null;
         }
 
         PrefixNode<V> ptr = root;
 
         for (V value: prefix) {
             if (ptr.hasNext(value)) {
-                ptr = ptr.getNext(value); 
+                ptr = ptr.getNext(value);
             } else {
                 return ptr.getRand();
             }
@@ -59,7 +62,7 @@ public class Markov<V> {
     }
 
     /*
-     * Returns a valid seed prefix for this Markov chain. 
+     * Returns a valid seed prefix for this Markov chain.
      */
     public List<V> getSeed() {
         List<V> seed = new LinkedList<V>();

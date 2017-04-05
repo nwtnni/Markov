@@ -17,7 +17,7 @@ public class PrefixNode<V> {
     private int total;
 
     public PrefixNode(V value) {
-        this.value = value; 
+        this.value = value;
         next = new HashMap<V, PrefixNode<V>>();
         count = new HashMap<V, Integer>();
         total = 0;
@@ -49,7 +49,7 @@ public class PrefixNode<V> {
      * Returns the prefix this node represents.
      */
     public V getValue() {
-        return value; 
+        return value;
     }
 
     /*
@@ -65,7 +65,7 @@ public class PrefixNode<V> {
      * this node, including duplicates.
      */
     public int getTotal() {
-        return total; 
+        return total;
     }
 
     /*
@@ -74,9 +74,9 @@ public class PrefixNode<V> {
      */
     public boolean hasNext(V value) {
         if (next.containsKey(value)) {
-            return true; 
+            return true;
         } else {
-            return false; 
+            return false;
         }
     }
 
