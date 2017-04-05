@@ -3,6 +3,7 @@ package parse;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /*
  * Node class representing some prefix. Keeps track of
@@ -12,7 +13,6 @@ public class PrefixNode<V> {
 
     private HashMap<V, PrefixNode<V>> next;
     private HashMap<V, Integer> count;
-    private HashMap<V, Double> prob;
     private V value;
     private int total;
 
@@ -20,7 +20,6 @@ public class PrefixNode<V> {
         this.value = value; 
         next = new HashMap<V, PrefixNode<V>>();
         count = new HashMap<V, Integer>();
-        prob = new HashMap<V, Double>();
         total = 0;
     }
 
@@ -77,15 +76,28 @@ public class PrefixNode<V> {
         return next.get(value);
     }
 
+    /*
+     * Returns next value with probability proportional to
+     * how many times it appears.
+     */
+    public V getRand() {
+        int n = (new Random()).nextInt(total) + 1;
+        int counter = 0;
+
+        for (V value : count.keySet()) {
+            counter += count.get(value);
+            if (counter >= n) return value;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder("Node " + value + " has children:\n");
-        
         for (V value : next.keySet()) {
-            sb.append(); 
+            sb.append(value + ": " + count.get(value) + "\n");
         }
-
-        return null; 
+        return sb.toString();
     }
 }

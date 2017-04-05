@@ -24,7 +24,7 @@ public class Markov<V> {
         }
     
         PrefixNode<V> ptr = root;
-        for(V value: prefix) {
+        for (V value: prefix) {
             ptr.addNext(value);
             ptr = ptr.getNext(value);
         }
@@ -33,7 +33,20 @@ public class Markov<V> {
         return true;
     }
 
-    public
+    /*
+     * Returns a random value with probability
+     * proportional to how many times it's appeared
+     * after the given prefix.
+     */
+    public V getNext(List<V> prefix) {
+        if (prefix.size() != order) {
+            return null; 
+        }
 
-    
+        PrefixNode<V> ptr = root;
+        for (V value: prefix) {
+            ptr = ptr.getNext(value); 
+        }
+        return ptr.getRand();
+    }
 }
