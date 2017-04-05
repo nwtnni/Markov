@@ -1,8 +1,8 @@
 package util;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /*
  * Wrapper class for Queue that maintains
@@ -10,7 +10,7 @@ import java.util.Queue;
  */
 public class FixedLengthQueue<E> {
 
-    private Queue<E> q;
+    private LinkedList<E> q;
 
     /*
      * Initializes this FixedLengthQueue with
@@ -30,5 +30,13 @@ public class FixedLengthQueue<E> {
         E first = q.poll();
         q.add(elem);
         return first;
+    }
+
+    /*
+     * Returns an unmodifiable List version of the queue
+     * backing this FixedLengthQueue.
+     */
+    public List<E> toList() {
+        return Collections.unmodifiableList(q);
     }
 }

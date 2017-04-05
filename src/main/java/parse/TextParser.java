@@ -1,12 +1,15 @@
 package parse;
 
 import java.io.BufferedInputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Scanner;
+
+import util.FixedLengthQueue;
 
 public class TextParser {
     
@@ -22,14 +25,24 @@ public class TextParser {
         s = new Scanner(new BufferedInputStream(new FileInputStream(f)));
      }
 
-    public void parse() {
-       
+    public void parse() throws EOFException {
 
-        
+        List<String> initial = new ArrayList<String>();
+
+        for (int i = 0; i < order; i++) {
+            if (!s.hasNext()) {
+                throw new EOFException("File is not long enough to parse correctly.");
+            } else {
+                initial.add(s.next()); 
+            }
+        }
+
+        FixedLengthQueue<String> q = new FixedLengthQueue<String>(initial);
 
         while (s.hasNext()) {
-
-
-        } 
+            String word = s.next(); 
+            mc.addSeq(q.toList(), word);
+            q.shift(word);
+        }
     }
 }
