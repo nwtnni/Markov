@@ -91,6 +91,9 @@ public class PrefixNode<V> {
         return null;
     }
 
+    /*
+     * Pretty-print this node and its children, along with their counts.
+     */
     @Override
     public String toString() {
 
