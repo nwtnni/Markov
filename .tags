@@ -4,19 +4,25 @@ addSeq	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.ja
 count	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private HashMap<V, Integer> count;$/;"	f	language:Java	class:PrefixNode	file:
 FixedLengthQueue	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/util/FixedLengthQueue.java	/^    public FixedLengthQueue(List<E> initial) {$/;"	m	language:Java	class:FixedLengthQueue
 FixedLengthQueue	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/util/FixedLengthQueue.java	/^public class FixedLengthQueue<E> {$/;"	c	language:Java
+generate	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/TextParser.java	/^    public String generate(int length) {$/;"	m	language:Java	class:TextParser
 getCount	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public Map<V, Integer> getCount() {$/;"	m	language:Java	class:PrefixNode
 getNext	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    public V getNext(List<V> prefix) {$/;"	m	language:Java	class:Markov
 getNext	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public PrefixNode<V> getNext(V value) {$/;"	m	language:Java	class:PrefixNode
 getRand	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public V getRand() {$/;"	m	language:Java	class:PrefixNode
+getSeed	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    public List<V> getSeed() {$/;"	m	language:Java	class:Markov
 getTotal	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public int getTotal() {$/;"	m	language:Java	class:PrefixNode
 getValue	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public V getValue() {$/;"	m	language:Java	class:PrefixNode
+hasNext	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    public boolean hasNext(V value) {$/;"	m	language:Java	class:PrefixNode
 load	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/TextParser.java	/^    public void load(File f) throws IOException {$/;"	m	language:Java	class:TextParser
+main	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Main.java	/^    public static void main(String[] args) {$/;"	m	language:Java	class:Main
+Main	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Main.java	/^public class Main {$/;"	c	language:Java
 Markov	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    public Markov(int order) {$/;"	m	language:Java	class:Markov
 Markov	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^public class Markov<V> {$/;"	c	language:Java
 mc	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/TextParser.java	/^    private Markov<String> mc;$/;"	f	language:Java	class:TextParser	file:
 next	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^    private HashMap<V, PrefixNode<V>> next;$/;"	f	language:Java	class:PrefixNode	file:
 order	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^    int order;$/;"	f	language:Java	class:Markov
 order	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/TextParser.java	/^    private int order;$/;"	f	language:Java	class:TextParser	file:
+parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Main.java	/^package parse;$/;"	p	language:Java
 parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/Markov.java	/^package parse;$/;"	p	language:Java
 parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/PrefixNode.java	/^package parse;$/;"	p	language:Java
 parse	/home/nni/Dropbox/School/CS/Projects/Markov/src/main/java/parse/TextParser.java	/^    public void parse() throws EOFException {$/;"	m	language:Java	class:TextParser

@@ -1,5 +1,6 @@
 package parse;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Markov<V> {
@@ -22,7 +23,7 @@ public class Markov<V> {
         if (prefix.size() != order) {
             return false; 
         }
-    
+
         PrefixNode<V> ptr = root;
         for (V value: prefix) {
             ptr.addNext(value);
@@ -36,7 +37,9 @@ public class Markov<V> {
     /*
      * Returns a random value with probability
      * proportional to how many times it's appeared
-     * after the given prefix.
+     * after the given prefix. If the prefix has
+     * not appeared, then return a random value based
+     * on the longest subsequence.
      */
     public V getNext(List<V> prefix) {
         if (prefix.size() != order) {
@@ -44,9 +47,30 @@ public class Markov<V> {
         }
 
         PrefixNode<V> ptr = root;
+
         for (V value: prefix) {
-            ptr = ptr.getNext(value); 
+            if (ptr.hasNext(value)) {
+                ptr = ptr.getNext(value); 
+            } else {
+                return ptr.getRand();
+            }
         }
         return ptr.getRand();
+    }
+
+    /*
+     * Returns a valid seed prefix for this Markov chain. 
+     */
+    public List<V> getSeed() {
+        List<V> seed = new LinkedList<V>();
+
+        PrefixNode<V> ptr = root;
+        for (int i = 0; i < order; i++) {
+            V value = ptr.getRand();
+            seed.add(value);
+            ptr = ptr.getNext(value);
+        }
+
+        return seed;
     }
 }

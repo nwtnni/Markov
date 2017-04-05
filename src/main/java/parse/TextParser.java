@@ -12,13 +12,13 @@ import java.util.Scanner;
 import util.FixedLengthQueue;
 
 public class TextParser {
-    
+
     private int order;
     private Markov<String> mc;
     private Scanner s;
 
     public TextParser(int order) {
-        mc = new Markov<String>(order); 
+        mc = new Markov<String>(order);
     }
 
     public void load(File f) throws IOException {
@@ -33,16 +33,31 @@ public class TextParser {
             if (!s.hasNext()) {
                 throw new EOFException("File is not long enough to parse correctly.");
             } else {
-                initial.add(s.next()); 
+                initial.add(s.next());
             }
         }
 
         FixedLengthQueue<String> q = new FixedLengthQueue<String>(initial);
 
         while (s.hasNext()) {
-            String word = s.next(); 
+            String word = s.next();
             mc.addSeq(q.toList(), word);
             q.shift(word);
         }
+    }
+
+    public String generate(int length) {
+
+        StringBuilder sb = new StringBuilder();
+
+        FixedLengthQueue<String> q = new FixedLengthQueue<String>(mc.getSeed());
+
+        for (int i = 0; i < length; i++) {
+            String next = mc.getNext(q.toList());
+            q.shift(next);
+            sb.append(next);
+        }
+
+        return sb.toString();
     }
 }

@@ -69,6 +69,18 @@ public class PrefixNode<V> {
     }
 
     /*
+     * Checks if the given value is a child
+     * of this node.
+     */
+    public boolean hasNext(V value) {
+        if (next.containsKey(value)) {
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+
+    /*
      * Returns the value child prefix node if it
      * exists, or null otherwise.
      */
