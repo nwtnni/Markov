@@ -3,7 +3,7 @@
 ## Background
 
 A Markov chain of order n represents a transition
-function that only depends on theh previous n states.
+function that only depends on the previous n states.
 This program uses a Markov chain to generate random
 text in the style of the given source text.
 
