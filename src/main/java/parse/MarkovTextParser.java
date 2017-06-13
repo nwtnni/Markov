@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class MarkovTextParser {
     private Scanner s;
 
     /*
-     * Constructs a
+     * Constructs a text parser.
      */
     public MarkovTextParser(int order) {
         this.order = order;
@@ -26,24 +27,16 @@ public class MarkovTextParser {
     }
 
     /*
-     * Loads a text file for use by this parser.
-     */
-    public void load(File f) throws IOException {
-        s = new Scanner(new BufferedInputStream(new FileInputStream(f)));
-     }
-
-    /*
-     * Parses the loaded file into a Markov Chain tree.
+     * Parses the given file into a Markov Chain tree.
      * Returns null if no file was loaded.
      *
      * @exception EOFException if file does not meet minumum length
      * for the given Markov Chain order.
      */
-    public void parse() throws EOFException {
+    public void parse(File f) throws EOFException, FileNotFoundException {
 
-        if (s == null) {
-            return;
-        }
+    	s = new Scanner(new BufferedInputStream(new FileInputStream(f)));
+    	
 
         List<String> initial = new ArrayList<String>();
 

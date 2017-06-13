@@ -19,8 +19,7 @@ public class Main {
         Scanner s = new Scanner(System.in);
 
         try {
-            tp.load(new File(args[1]));
-            tp.parse();
+            tp.parse(new File(args[1]));
         } catch(Exception e){
             s.close();
             return;
