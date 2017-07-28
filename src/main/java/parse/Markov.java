@@ -45,10 +45,6 @@ public class Markov<V> {
      * on the longest subsequence.
      */
     public V getNext(List<V> prefix) {
-        if (prefix.size() != order) {
-            return null;
-        }
-
         PrefixNode<V> ptr = root;
 
         for (V value: prefix) {

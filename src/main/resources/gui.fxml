@@ -29,7 +29,7 @@
             <TextArea fx:id="stats" disable="true" editable="false" focusTraversable="false" prefHeight="505.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <TextArea fx:id="display" prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="display" prefHeight="600.0" prefWidth="800.0" wrapText="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

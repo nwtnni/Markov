@@ -1,8 +1,8 @@
 package gui;
 
-import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class TextGenerator extends Application {
 
 	private MarkovTextParser parser;
+	private String suggested;
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -31,6 +34,7 @@ public class TextGenerator extends Application {
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/gui.fxml"));
 		final Scene scene = new Scene(fxml.load(), 800, 600);
 		parser = null;
+		suggested = null;
 		
 		Button load = (Button) fxml.getNamespace().get("load");
 		Button reset = (Button) fxml.getNamespace().get("reset");
@@ -77,10 +81,25 @@ public class TextGenerator extends Application {
 		});
 		
 		display.textProperty().addListener((observable, oldValue, newValue) -> {
-			newValue.split(" ");
+			String[] words = newValue.split(" ");
+			
+			List<String> prefix = new ArrayList<String>();
+			int length = Math.min((int) orderSlider.getValue(), words.length); 
+			for (int i = length; i > 0; i--) {
+				prefix.add(words[words.length - i]);
+			}
+			
+			suggested = parser.getNext(prefix);
+			
 		});
 		
-		
+		display.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
+			if (key.getCode() == KeyCode.TAB && suggested != null && reset.isDisable() == true) {
+				display.textProperty().set(display.textProperty().get() + " " + suggested);
+				display.positionCaret(display.textProperty().length().intValue());
+				key.consume();
+			}
+		});
 		
 		
 		
