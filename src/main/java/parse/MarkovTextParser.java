@@ -80,4 +80,11 @@ public class MarkovTextParser {
 
         return sb.toString();
     }
+   
+    public String getNext(List<String> prefix) {
+    	if (prefix.size() != order) {
+    		return null;
+    	}
+    	return mc.getNext(prefix);
+    }
 }
