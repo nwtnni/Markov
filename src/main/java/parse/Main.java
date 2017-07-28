@@ -7,10 +7,13 @@ public class Main {
 
     public static void old_main(String[] args) {
 
+    	Markov<String> mc;
         MarkovTextParser tp;
 
         try {
-            tp = new MarkovTextParser(Integer.parseInt(args[0]));
+        	mc = new Markov<String>(Integer.parseInt(args[0]));
+            tp = new MarkovTextParser();
+            tp.setMarkov(mc);
         } catch(NumberFormatException n){
             usage();
             return;

@@ -13,18 +13,13 @@ import util.FixedLengthQueue;
 
 public class MarkovTextParser {
 
-    private int order;
-    private Markov<String> mc;
     private Scanner s;
+    private Markov<String> mc;
 
-    /*
-     * Constructs a text parser.
-     */
-    public MarkovTextParser(int order) {
-        this.order = order;
-        mc = new Markov<String>(order);
+    public void setMarkov(Markov<String> mc) {
+    	this.mc = mc;
     }
-
+    
     /*
      * Parses the given file into a Markov Chain tree.
      * Returns null if no file was loaded.
@@ -39,7 +34,7 @@ public class MarkovTextParser {
 
         List<String> initial = new ArrayList<String>();
 
-        for (int i = 0; i < order; i++) {
+        for (int i = 0; i < mc.order; i++) {
             if (!s.hasNext()) {
                 throw new EOFException("File is not long enough to parse correctly.");
             } else {
@@ -79,9 +74,5 @@ public class MarkovTextParser {
         }
 
         return sb.toString();
-    }
-   
-    public String getNext(List<String> prefix) {
-    	return mc.getNext(prefix);
     }
 }

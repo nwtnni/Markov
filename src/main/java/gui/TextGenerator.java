@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 import javafx.stage.FileChooser;
+import parse.Markov;
 import parse.MarkovTextParser;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -20,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 
 public class TextGenerator extends Application {
 
+	private Markov<String> mc;
 	private MarkovTextParser parser;
 	private String suggested;
 	
@@ -33,7 +35,8 @@ public class TextGenerator extends Application {
 		
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/gui.fxml"));
 		final Scene scene = new Scene(fxml.load(), 800, 600);
-		parser = null;
+		mc = null;
+		parser = new MarkovTextParser();
 		suggested = null;
 		
 		Button load = (Button) fxml.getNamespace().get("load");
@@ -51,8 +54,9 @@ public class TextGenerator extends Application {
 		
 		load.setOnMouseClicked(click -> {
 			
-			if (parser == null) {
-				parser = new MarkovTextParser((int) orderSlider.getValue());
+			if (mc == null) {
+				mc = new Markov<String>((int) orderSlider.getValue());
+				parser.setMarkov(mc);
 				orderSlider.setDisable(true);
 			}
 			
@@ -74,7 +78,8 @@ public class TextGenerator extends Application {
 		});
 		
 		reset.setOnMouseClicked(click -> {
-			parser = null;
+			mc = null;
+			parser.setMarkov(null);
 			stats.clear();
 			orderSlider.setDisable(false);		
 			reset.setDisable(true);
@@ -89,12 +94,12 @@ public class TextGenerator extends Application {
 				prefix.add(words[words.length - i]);
 			}
 			
-			suggested = parser.getNext(prefix);
+			suggested = mc.getNext(prefix);
 			
 		});
 		
 		display.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
-			if (key.getCode() == KeyCode.TAB && suggested != null && reset.isDisable() == true) {
+			if (key.getCode() == KeyCode.TAB && suggested != null && reset.isDisable() == false) {
 				display.textProperty().set(display.textProperty().get() + " " + suggested);
 				display.positionCaret(display.textProperty().length().intValue());
 				key.consume();
