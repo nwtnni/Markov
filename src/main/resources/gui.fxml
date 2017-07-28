@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -14,6 +14,14 @@
               <items>
                 <Button fx:id="load" mnemonicParsing="false" text="Load File" />
                   <Button fx:id="reset" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" text="Reset" />
+                  <Separator orientation="VERTICAL">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Separator>
+                  <Label text="Order" />
+                  <Slider fx:id="orderSlider" blockIncrement="1.0" max="10.0" min="1.0" />
+                  <Label fx:id="orderLabel" text="1" />
               </items>
             </ToolBar>
          </bottom>
