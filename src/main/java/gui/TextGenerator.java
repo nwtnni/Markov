@@ -1,11 +1,8 @@
 package gui;
 
 import java.io.File;
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -72,7 +69,9 @@ public class TextGenerator extends Application {
 				parser.parse(f);
 				reset.setDisable(false);
 				orderSlider.setDisable(true);
-				stats.setText("<- Try typing something here!");
+				display.setEditable(true);
+				display.setPromptText("Try typing here, and press TAB to autocomplete.");
+				stats.setText("Suggested words will appear here as you type, including their source text probability.");
 			} catch (Exception e) {
 				stats.setText("File failed to load.");
 			}
@@ -101,7 +100,7 @@ public class TextGenerator extends Application {
 				List<Entry<String>> probable = mc.mostProbable(prefix, 10);
 				StringBuilder sb = new StringBuilder();
 				
-				sb.append("Next Word: " + suggested + "\n" + "Most Common:\n");
+				sb.append("Next Word: " + suggested + "\n\n" + "Most Common:\n\n");
 				
 				probable.forEach(entry -> {
 					sb.append(entry.value + ": " + Math.round(entry.freq * 1000)/(float) 1000 + "\n");

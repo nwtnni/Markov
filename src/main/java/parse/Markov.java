@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import util.Entry;
@@ -53,18 +52,13 @@ public class Markov<V> {
      */
     public V getNext(List<V> prefix) {
     	
-        // Must match this Markov chain's order
-        if (prefix.size() != order) {
-            return null;
-        }
-    	
         PrefixNode<V> ptr = root;
 
         for (V value: prefix) {
             if (ptr.hasNext(value)) {
                 ptr = ptr.getNext(value);
             } else {
-                return null;
+                break;
             }
         }
         return ptr.getRand();
@@ -94,7 +88,7 @@ public class Markov<V> {
             if (ptr.hasNext(value)) {
                 ptr = ptr.getNext(value);
             } else {
-                return null;
+                break;
             }
         }
     	
