@@ -1,13 +1,20 @@
 package parse;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
+import util.Entry;
 
 public class Markov<V> {
 
     int order;
     PrefixNode<V> root;
-
+    
     /*
      * Constructs a Markov Chain with the given order.
      */
@@ -45,13 +52,19 @@ public class Markov<V> {
      * on the longest subsequence.
      */
     public V getNext(List<V> prefix) {
+    	
+        // Must match this Markov chain's order
+        if (prefix.size() != order) {
+            return null;
+        }
+    	
         PrefixNode<V> ptr = root;
 
         for (V value: prefix) {
             if (ptr.hasNext(value)) {
                 ptr = ptr.getNext(value);
             } else {
-                return ptr.getRand();
+                return null;
             }
         }
         return ptr.getRand();
@@ -71,5 +84,28 @@ public class Markov<V> {
         }
 
         return seed;
+    }
+    
+    public List<Entry<V>> mostProbable(List<V> prefix, int size) {
+        PrefixNode<V> ptr = root;
+        ArrayList<Entry<V>> probable = new ArrayList<>();
+        
+    	for (V value: prefix) {
+            if (ptr.hasNext(value)) {
+                ptr = ptr.getNext(value);
+            } else {
+                return null;
+            }
+        }
+    	
+    	Stream<Map.Entry<V, Integer>> stream = ptr.getCount().entrySet().stream()
+    			.sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(size);
+    	
+        float total = (float) ptr.getTotal();
+    	stream.forEachOrdered(item -> {
+    		probable.add(new Entry<V>(item.getValue() / total, item.getKey()));
+    	});
+    	
+    	return probable;
     }
 }

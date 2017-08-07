@@ -1,8 +1,10 @@
 package gui;
 
 import java.io.File;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.FileChooser;
 import parse.Markov;
 import parse.MarkovTextParser;
+import util.Entry;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Label;
@@ -46,18 +49,15 @@ public class TextGenerator extends Application {
 		TextArea display = (TextArea) fxml.getNamespace().get("display");
 		TextArea stats = (TextArea) fxml.getNamespace().get("stats");
 		
-
-		
 		orderSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
 			orderLabel.setText(((Integer) newValue.intValue()).toString());
 		});
-		
+
 		load.setOnMouseClicked(click -> {
 			
 			if (mc == null) {
 				mc = new Markov<String>((int) orderSlider.getValue());
 				parser.setMarkov(mc);
-				orderSlider.setDisable(true);
 			}
 			
 			FileChooser fc = new FileChooser();
@@ -71,9 +71,10 @@ public class TextGenerator extends Application {
 			try {
 				parser.parse(f);
 				reset.setDisable(false);
+				orderSlider.setDisable(true);
+				stats.setText("<- Try typing something here!");
 			} catch (Exception e) {
 				stats.setText("File failed to load.");
-				e.printStackTrace();
 			}
 		});
 		
@@ -96,6 +97,20 @@ public class TextGenerator extends Application {
 			
 			suggested = mc.getNext(prefix);
 			
+			if (suggested != null) {
+				List<Entry<String>> probable = mc.mostProbable(prefix, 10);
+				StringBuilder sb = new StringBuilder();
+				
+				sb.append("Next Word: " + suggested + "\n" + "Most Common:\n");
+				
+				probable.forEach(entry -> {
+					sb.append(entry.value + ": " + Math.round(entry.freq * 1000)/(float) 1000 + "\n");
+				});
+				stats.setText(sb.toString());
+			} else {
+				stats.setText("");
+			}
+
 		});
 		
 		display.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
@@ -105,11 +120,6 @@ public class TextGenerator extends Application {
 				key.consume();
 			}
 		});
-		
-		
-		
-		
-		
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
