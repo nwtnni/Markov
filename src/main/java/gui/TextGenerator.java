@@ -34,7 +34,7 @@ public class TextGenerator extends Application {
 		// TODO Auto-generated method stub
 		
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/gui.fxml"));
-		final Scene scene = new Scene(fxml.load(), 800, 600);
+		final Scene scene = new Scene(fxml.load(), 1200, 800);
 		mc = null;
 		parser = new MarkovTextParser();
 		suggested = null;
@@ -120,6 +120,7 @@ public class TextGenerator extends Application {
 			}
 		});
 		
+		primaryStage.setTitle("Markov Chain Text Generator");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

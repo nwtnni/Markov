@@ -6,11 +6,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane prefHeight="800.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
               <items>
                 <Button fx:id="load" mnemonicParsing="false" text="Load File" />
                   <Button fx:id="reset" disable="true" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" text="Reset" />
@@ -26,10 +26,10 @@
             </ToolBar>
          </bottom>
          <right>
-            <TextArea fx:id="stats" editable="false" focusTraversable="false" prefWidth="300.0" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="stats" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="400.0" wrapText="true" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <TextArea fx:id="display" editable="false" focusTraversable="false" prefHeight="600.0" prefWidth="800.0" promptText="Try loading a text file first!" wrapText="true" BorderPane.alignment="CENTER" />
+            <TextArea fx:id="display" editable="false" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="800.0" promptText="Try loading a text file first!" wrapText="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
