@@ -31,8 +31,6 @@ public class TextGenerator extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource("/gui.fxml"));
 		final Scene scene = new Scene(fxml.load(), 1200, 800);
 		mc = null;
@@ -109,7 +107,6 @@ public class TextGenerator extends Application {
 			} else {
 				stats.setText("");
 			}
-
 		});
 		
 		display.addEventHandler(KeyEvent.KEY_PRESSED, key -> {
